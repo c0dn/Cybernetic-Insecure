@@ -1,0 +1,2718 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Cybernetic",
+    "description": "App Sec project",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/users/me": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "User Profile (Me)",
+        "description": "Return Logged In User Profile\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "UserProfile(Me)",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "136"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 16 Jun 2020 11:02:47 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Userprofile%28Me%29-Successful"
+                },
+                "example": {
+                  "data": {
+                    "admin": false,
+                    "email": "test@test.com",
+                    "user_id": 1,
+                    "username": "tester"
+                  },
+                  "success": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "Invalid token. Please log in again.",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Edit Profile",
+        "description": "Edit Own User Profile\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "EditProfile",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditProfileRequest"
+              },
+              "example": {
+                "username": "New Tester",
+                "email": "new_tester@test.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "136"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 16 Jun 2020 11:02:47 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Userprofile%28Me%29-Successful"
+                },
+                "example": {
+                  "data": {
+                    "admin": false,
+                    "email": "test@test.com",
+                    "user_id": 1,
+                    "username": "tester"
+                  },
+                  "success": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "Signature expired. Please log in again.",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Users",
+        "description": "View All Users\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "Users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/102": {
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Deactivate User",
+        "description": "Deactivate User\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "DeactivateUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cards": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get Cards",
+        "description": "Return all user bank cards added\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "GetCards",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "New card",
+        "description": "Add a new card\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "Newcard",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewcardRequest"
+              },
+              "example": {
+                "number": "4556822085271937",
+                "name": "Kent",
+                "cvc": "563",
+                "expiry_year": "2029",
+                "expiry_month": "09"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "292"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 16 Jun 2020 15:11:43 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Newcard-Successful%2Cnormal"
+                },
+                "example": {
+                  "data": {
+                    "cvc": "563",
+                    "expiry": "01/1970",
+                    "name": "Kent",
+                    "number": "4556822085271937",
+                    "type": "Visa Debit",
+                    "user": {
+                      "admin": false,
+                      "email": "test@test.com",
+                      "user_id": 1,
+                      "username": "tester"
+                    }
+                  },
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BAD REQUEST",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "Card already exist",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cards/3": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get Card",
+        "description": "return a specific card based on ID\r\n/cards/<id>/\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "GetCard",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "290"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 16 Jun 2020 14:15:46 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCard-Success%2Cinsecure"
+                },
+                "example": {
+                  "data": {
+                    "cvc": "956",
+                    "expiry": "06/2025",
+                    "name": "Joel",
+                    "number": "4843635704855861",
+                    "type": "Visa Debit",
+                    "user": {
+                      "admin": false,
+                      "email": "joel@test.com",
+                      "user_id": 3,
+                      "username": "joel"
+                    }
+                  },
+                  "success": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "No such card",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Remove Card",
+        "description": "Remove a card by ID\r\nDELETE /card/<id>/\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "RemoveCard",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "22"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 16 Jun 2020 15:16:11 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveCard-Sucessful"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "No such card",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/address": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get Addresses",
+        "description": "Return All Addresses added by the User \r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "GetAddresses",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "908"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Jun 2020 03:43:13 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAddresses-Successful"
+                },
+                "example": {
+                  "data": {
+                    "cards": [
+                      {
+                        "address_line1": "959 Hougang Street 91",
+                        "address_line2": "#04-288",
+                        "contact": "95553459",
+                        "description": "Home Address",
+                        "id": 1,
+                        "name": "Testing Dude",
+                        "postal": "#04-288",
+                        "user": {
+                          "admin": false,
+                          "email": "test@test.com",
+                          "user_id": 1,
+                          "username": "tester"
+                        }
+                      },
+                      {
+                        "address_line1": "107C CANBERRA STREET #03-605",
+                        "address_line2": "EASTBROOK @ CANBERRA",
+                        "contact": "95550448",
+                        "description": "Office Address",
+                        "id": 2,
+                        "name": "Testing Dude",
+                        "postal": "EASTBROOK @ CANBERRA",
+                        "user": {
+                          "admin": false,
+                          "email": "test@test.com",
+                          "user_id": 1,
+                          "username": "tester"
+                        }
+                      }
+                    ]
+                  },
+                  "success": true
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "New Address",
+        "description": "Add Address added by the User \r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "NewAddress",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAddressRequest"
+              },
+              "example": {
+                "description": "Warehouse 2",
+                "address_line1": "959 Hougang Street 91 #04-288",
+                "postal_code": "530959",
+                "contact": "95556072",
+                "name": "Testing Dude"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "383"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Jun 2020 05:08:49 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Successful"
+                },
+                "example": {
+                  "data": {
+                    "address_line1": "959 Hougang Street 91 #04-288",
+                    "address_line2": null,
+                    "contact": "95556072",
+                    "description": "Warehouse 2",
+                    "id": 4,
+                    "name": "Testing Dude",
+                    "postal_code": "530959",
+                    "user": {
+                      "admin": false,
+                      "email": "test@test.com",
+                      "user_id": 1,
+                      "username": "tester"
+                    }
+                  },
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BAD REQUEST",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "Address already exist",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/address/3": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get Address",
+        "description": "Return Specific Address added by the User \r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "GetAddress",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "403"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Jun 2020 05:04:48 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAddress-Successful"
+                },
+                "example": {
+                  "data": {
+                    "address_line1": "107C CANBERRA STREET #03-605",
+                    "address_line2": "EASTBROOK @ CANBERRA",
+                    "contact": "95550448",
+                    "description": "Office Address",
+                    "id": 2,
+                    "name": "Testing Dude",
+                    "postal_code": "123456",
+                    "user": {
+                      "admin": false,
+                      "email": "test@test.com",
+                      "user_id": 1,
+                      "username": "tester"
+                    }
+                  },
+                  "success": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "No such Address saved",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/address/4": {
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Delete Address",
+        "description": "Delete Specific Address added by the User \r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "DeleteAddress",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "22"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Jun 2020 05:10:49 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAddress-Successful"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "No such Address saved",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/address/2": {
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Edit Address",
+        "description": "Edit Specific Address Information chosen by the User \r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "EditAddress",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAddressRequest"
+              },
+              "example": {
+                "postal_code": "123456"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "403"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Jun 2020 05:04:01 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditAddress-UnknownField"
+                },
+                "example": {
+                  "data": {
+                    "address_line1": "107C CANBERRA STREET #03-605",
+                    "address_line2": "EASTBROOK @ CANBERRA",
+                    "contact": "95550448",
+                    "description": "Office Address",
+                    "id": 2,
+                    "name": "Testing Dude",
+                    "postal_code": "123456",
+                    "user": {
+                      "admin": false,
+                      "email": "test@test.com",
+                      "user_id": 1,
+                      "username": "tester"
+                    }
+                  },
+                  "success": true
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/uploads": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Upload Product Image",
+        "description": "Try Update Product Image as User \r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "UploadProductImage",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Add Product",
+        "description": "Add A New Product\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "AddProduct",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddProductRequest"
+              },
+              "example": {
+                "retail_price": 135.0,
+                "name": "Blackpods Pro2",
+                "description": "This is a scam",
+                "pic_filename": "scampods_3529963a5-a2fa-458c-8b71-b4f8acdc1e12.jpg",
+                "stock": 30
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Retrieve Products",
+        "operationId": "RetrieveProducts",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 20
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/1": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Product Details",
+        "description": "View Product Details\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "ProductDetails",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Edit Product Details",
+        "description": "Edit Product Details\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "EditProductDetails",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditProductDetailsRequest"
+              },
+              "example": {
+                "retail_price": 215.0,
+                "description": "This is a new scam",
+                "pic_filename": "scampods_3529963a5-a2fa-458c-8b71-b4f8acdc1e12.jpg",
+                "stock": 100
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/4": {
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Delete Product",
+        "description": "Delete Product\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "DeleteProduct",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cart/1": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get Cart",
+        "description": "Retrieve User Cart\r\nUsername : test\r\nEmail : test@test.com",
+        "operationId": "GetCart",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Add to Cart",
+        "description": "Add Item to Cart\r\nUsername : test\r\nEmail : test@test.com",
+        "operationId": "AddtoCart",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddtoCartRequest"
+              },
+              "example": {
+                "product_id": 3,
+                "quantity": 3
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cart/1/checkout": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Checkout",
+        "description": "Cart Checkout\r\nUsername : test\r\nEmail : test@test.com",
+        "operationId": "Checkout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/orders": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get orders",
+        "description": "Return Orders of the Logged In User\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "Getorders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/orders/1": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get order",
+        "description": "Return Specific Order of the Logged In User\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "Getorder",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/reviews/product/1": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "View Reviews",
+        "description": "View Reviews by Product\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "ViewReviews",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Add Review",
+        "description": "Add Review\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "AddReview",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddReviewRequest"
+              },
+              "example": {
+                "rating": 5,
+                "comments": "Very Good",
+                "user_id": 1
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/reviews/1": {
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Edit Review",
+        "description": "Edit Review Submitted\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "EditReview",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditReviewRequest"
+              },
+              "example": {
+                "comments": "Hello"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Delete Review",
+        "description": "Delete Review Written\r\nUsername : Tester\r\nEmail : test@test.com",
+        "operationId": "DeleteReview",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteReviewRequest"
+              },
+              "example": {
+                "comments": "Hello"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/search/product": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Search Product",
+        "description": "Search for Product by Key",
+        "operationId": "SearchProduct",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "Airpods 2';"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/search/user": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Search User",
+        "description": "Search for User by Key",
+        "operationId": "SearchUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "%%"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "description": "Login into Cybernetic, returns JWT auth token",
+        "operationId": "Login",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              },
+              "example": {
+                "email": "test@test.com ' or 1=1 --",
+                "password": "not_correct_password"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "227"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 16 Jun 2020 10:45:15 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login-SuccessfulLogin"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Successfully logged in.",
+                  "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTIzMDQzMjAsImlhdCI6MTU5MjMwNDMxNSwic3ViIjoxfQ.tOVFvLFLmZLefEtmRu2oqeut41_crOhZW8cGS67Rpns"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewAddress-Alreadyexist"
+                },
+                "example": {
+                  "message": "Incorrect username or password",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "description": "Register a new user and returns JWT auth token of the corresponding user",
+        "operationId": "Register",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              },
+              "example": {
+                "username": "tester2",
+                "email": "test2@test.com",
+                "password": "password"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "224"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Werkzeug/1.0.1 Python/3.8.2"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 16 Jun 2020 10:43:18 GMT"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Register-Successful"
+                },
+                "example": {
+                  "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTIzMDQyMDMsImlhdCI6MTU5MjMwNDE5OCwic3ViIjoxfQ.979DYzxQyQa1opjxBPNEsCnBHZs6uW2TlRjvC0skYAA",
+                  "message": "Successfully registered.",
+                  "success": true
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/forget-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Forget Password",
+        "description": "Email a link to existing email for password reseting",
+        "operationId": "ForgetPassword",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgetPasswordRequest"
+              },
+              "example": {
+                "email": "dylanliew0503@gmail.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/forget-password/new-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "New Password",
+        "operationId": "NewPassword",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPasswordRequest"
+              },
+              "example": {
+                "user_id": "2",
+                "code": "750248",
+                "password": "newpassword"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/2' OR '1=1": {
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Delete Product",
+        "description": "Delete Product\r\nUsername : Admin\r\nEmail : Admin@test.com",
+        "operationId": "DeleteProduct1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/uploads/scampods_3529963a5-a2fa-458c-8b71-b4f8acdc1e12.jpg": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Retrieve Product Image",
+        "operationId": "RetrieveProductImage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Userprofile(Me)-Successful": {
+        "title": "Userprofile(Me)-Successful",
+        "required": [
+          "data",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Data"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "data": {
+            "admin": false,
+            "email": "test@test.com",
+            "user_id": 1,
+            "username": "tester"
+          },
+          "success": true
+        }
+      },
+      "Data": {
+        "title": "Data",
+        "required": [
+          "admin",
+          "email",
+          "user_id",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "admin": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "admin": false,
+          "email": "test@test.com",
+          "user_id": 1,
+          "username": "tester"
+        }
+      },
+      "EditProfileRequest": {
+        "title": "EditProfileRequest",
+        "required": [
+          "username",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "New Tester",
+          "email": "new_tester@test.com"
+        }
+      },
+      "ChangePasswordRequest": {
+        "title": "ChangePasswordRequest",
+        "required": [
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "password": "password2"
+        }
+      },
+      "LoginRequest": {
+        "title": "LoginRequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "test@test.com ' or 1=1 --",
+          "password": "not_correct_password"
+        }
+      },
+      "Login-SuccessfulLogin": {
+        "title": "Login-SuccessfulLogin",
+        "required": [
+          "success",
+          "message",
+          "auth_token"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "auth_token": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Successfully logged in.",
+          "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTIzMDQzMjAsImlhdCI6MTU5MjMwNDMxNSwic3ViIjoxfQ.tOVFvLFLmZLefEtmRu2oqeut41_crOhZW8cGS67Rpns"
+        }
+      },
+      "RegisterRequest": {
+        "title": "RegisterRequest",
+        "required": [
+          "username",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "tester2",
+          "email": "test2@test.com",
+          "password": "password"
+        }
+      },
+      "Register-Successful": {
+        "title": "Register-Successful",
+        "required": [
+          "auth_token",
+          "message",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_token": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTIzMDQyMDMsImlhdCI6MTU5MjMwNDE5OCwic3ViIjoxfQ.979DYzxQyQa1opjxBPNEsCnBHZs6uW2TlRjvC0skYAA",
+          "message": "Successfully registered.",
+          "success": true
+        }
+      },
+      "ForgetPasswordRequest": {
+        "title": "ForgetPasswordRequest",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "dylanliew0503@gmail.com"
+        }
+      },
+      "NewPasswordRequest": {
+        "title": "NewPasswordRequest",
+        "required": [
+          "user_id",
+          "code",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "user_id": "2",
+          "code": "750248",
+          "password": "newpassword"
+        }
+      },
+      "GetCard-Success,insecure": {
+        "title": "GetCard-Success,insecure",
+        "required": [
+          "data",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Data5"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "data": {
+            "cvc": "956",
+            "expiry": "06/2025",
+            "name": "Joel",
+            "number": "4843635704855861",
+            "type": "Visa Debit",
+            "user": {
+              "admin": false,
+              "email": "joel@test.com",
+              "user_id": 3,
+              "username": "joel"
+            }
+          },
+          "success": true
+        }
+      },
+      "Data5": {
+        "title": "Data5",
+        "required": [
+          "cvc",
+          "expiry",
+          "name",
+          "number",
+          "type",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "cvc": {
+            "type": "string"
+          },
+          "expiry": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "example": {
+          "cvc": "956",
+          "expiry": "06/2025",
+          "name": "Joel",
+          "number": "4843635704855861",
+          "type": "Visa Debit",
+          "user": {
+            "admin": false,
+            "email": "joel@test.com",
+            "user_id": 3,
+            "username": "joel"
+          }
+        }
+      },
+      "User": {
+        "title": "User",
+        "required": [
+          "admin",
+          "email",
+          "user_id",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "admin": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "admin": false,
+          "email": "joel@test.com",
+          "user_id": 3,
+          "username": "joel"
+        }
+      },
+      "NewcardRequest": {
+        "title": "NewcardRequest",
+        "required": [
+          "number",
+          "name",
+          "cvc",
+          "expiry_year",
+          "expiry_month"
+        ],
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cvc": {
+            "type": "string"
+          },
+          "expiry_year": {
+            "type": "string"
+          },
+          "expiry_month": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "number": "4556822085271937",
+          "name": "Kent",
+          "cvc": "563",
+          "expiry_year": "2029",
+          "expiry_month": "09"
+        }
+      },
+      "Newcard-Successful,normal": {
+        "title": "Newcard-Successful,normal",
+        "required": [
+          "data",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Data5"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "data": {
+            "cvc": "563",
+            "expiry": "01/1970",
+            "name": "Kent",
+            "number": "4556822085271937",
+            "type": "Visa Debit",
+            "user": {
+              "admin": false,
+              "email": "test@test.com",
+              "user_id": 1,
+              "username": "tester"
+            }
+          },
+          "success": true
+        }
+      },
+      "RemoveCard-Sucessful": {
+        "title": "RemoveCard-Sucessful",
+        "required": [
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "success": true
+        }
+      },
+      "GetAddresses-Successful": {
+        "title": "GetAddresses-Successful",
+        "required": [
+          "data",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Data7"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "data": {
+            "cards": [
+              {
+                "address_line1": "959 Hougang Street 91",
+                "address_line2": "#04-288",
+                "contact": "95553459",
+                "description": "Home Address",
+                "id": 1,
+                "name": "Testing Dude",
+                "postal": "#04-288",
+                "user": {
+                  "admin": false,
+                  "email": "test@test.com",
+                  "user_id": 1,
+                  "username": "tester"
+                }
+              },
+              {
+                "address_line1": "107C CANBERRA STREET #03-605",
+                "address_line2": "EASTBROOK @ CANBERRA",
+                "contact": "95550448",
+                "description": "Office Address",
+                "id": 2,
+                "name": "Testing Dude",
+                "postal": "EASTBROOK @ CANBERRA",
+                "user": {
+                  "admin": false,
+                  "email": "test@test.com",
+                  "user_id": 1,
+                  "username": "tester"
+                }
+              }
+            ]
+          },
+          "success": true
+        }
+      },
+      "Data7": {
+        "title": "Data7",
+        "required": [
+          "cards"
+        ],
+        "type": "object",
+        "properties": {
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Card"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "cards": [
+            {
+              "address_line1": "959 Hougang Street 91",
+              "address_line2": "#04-288",
+              "contact": "95553459",
+              "description": "Home Address",
+              "id": 1,
+              "name": "Testing Dude",
+              "postal": "#04-288",
+              "user": {
+                "admin": false,
+                "email": "test@test.com",
+                "user_id": 1,
+                "username": "tester"
+              }
+            },
+            {
+              "address_line1": "107C CANBERRA STREET #03-605",
+              "address_line2": "EASTBROOK @ CANBERRA",
+              "contact": "95550448",
+              "description": "Office Address",
+              "id": 2,
+              "name": "Testing Dude",
+              "postal": "EASTBROOK @ CANBERRA",
+              "user": {
+                "admin": false,
+                "email": "test@test.com",
+                "user_id": 1,
+                "username": "tester"
+              }
+            }
+          ]
+        }
+      },
+      "Card": {
+        "title": "Card",
+        "required": [
+          "address_line1",
+          "address_line2",
+          "contact",
+          "description",
+          "id",
+          "name",
+          "postal",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "address_line1": {
+            "type": "string"
+          },
+          "address_line2": {
+            "type": "string"
+          },
+          "contact": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "postal": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "example": {
+          "address_line1": "959 Hougang Street 91",
+          "address_line2": "#04-288",
+          "contact": "95553459",
+          "description": "Home Address",
+          "id": 1,
+          "name": "Testing Dude",
+          "postal": "#04-288",
+          "user": {
+            "admin": false,
+            "email": "test@test.com",
+            "user_id": 1,
+            "username": "tester"
+          }
+        }
+      },
+      "GetAddress-Successful": {
+        "title": "GetAddress-Successful",
+        "required": [
+          "data",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Data8"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "data": {
+            "address_line1": "107C CANBERRA STREET #03-605",
+            "address_line2": "EASTBROOK @ CANBERRA",
+            "contact": "95550448",
+            "description": "Office Address",
+            "id": 2,
+            "name": "Testing Dude",
+            "postal_code": "123456",
+            "user": {
+              "admin": false,
+              "email": "test@test.com",
+              "user_id": 1,
+              "username": "tester"
+            }
+          },
+          "success": true
+        }
+      },
+      "Data8": {
+        "title": "Data8",
+        "required": [
+          "address_line1",
+          "address_line2",
+          "contact",
+          "description",
+          "id",
+          "name",
+          "postal_code",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "address_line1": {
+            "type": "string"
+          },
+          "address_line2": {
+            "type": "string"
+          },
+          "contact": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "postal_code": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "example": {
+          "address_line1": "107C CANBERRA STREET #03-605",
+          "address_line2": "EASTBROOK @ CANBERRA",
+          "contact": "95550448",
+          "description": "Office Address",
+          "id": 2,
+          "name": "Testing Dude",
+          "postal_code": "123456",
+          "user": {
+            "admin": false,
+            "email": "test@test.com",
+            "user_id": 1,
+            "username": "tester"
+          }
+        }
+      },
+      "DeleteAddress-Successful": {
+        "title": "DeleteAddress-Successful",
+        "required": [
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "success": true
+        }
+      },
+      "EditAddressRequest": {
+        "title": "EditAddressRequest",
+        "required": [
+          "postal_code"
+        ],
+        "type": "object",
+        "properties": {
+          "postal_code": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "postal_code": "123456"
+        }
+      },
+      "EditAddress-UnknownField": {
+        "title": "EditAddress-UnknownField",
+        "required": [
+          "data",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Data8"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "data": {
+            "address_line1": "107C CANBERRA STREET #03-605",
+            "address_line2": "EASTBROOK @ CANBERRA",
+            "contact": "95550448",
+            "description": "Office Address",
+            "id": 2,
+            "name": "Testing Dude",
+            "postal_code": "123456",
+            "user": {
+              "admin": false,
+              "email": "test@test.com",
+              "user_id": 1,
+              "username": "tester"
+            }
+          },
+          "success": true
+        }
+      },
+      "NewAddressRequest": {
+        "title": "NewAddressRequest",
+        "required": [
+          "description",
+          "address_line1",
+          "postal_code",
+          "contact",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "address_line1": {
+            "type": "string"
+          },
+          "postal_code": {
+            "type": "string"
+          },
+          "contact": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "description": "Warehouse 2",
+          "address_line1": "959 Hougang Street 91 #04-288",
+          "postal_code": "530959",
+          "contact": "95556072",
+          "name": "Testing Dude"
+        }
+      },
+      "NewAddress-Successful": {
+        "title": "NewAddress-Successful",
+        "required": [
+          "data",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Data10"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "data": {
+            "address_line1": "959 Hougang Street 91 #04-288",
+            "address_line2": null,
+            "contact": "95556072",
+            "description": "Warehouse 2",
+            "id": 4,
+            "name": "Testing Dude",
+            "postal_code": "530959",
+            "user": {
+              "admin": false,
+              "email": "test@test.com",
+              "user_id": 1,
+              "username": "tester"
+            }
+          },
+          "success": true
+        }
+      },
+      "Data10": {
+        "title": "Data10",
+        "required": [
+          "address_line1",
+          "address_line2",
+          "contact",
+          "description",
+          "id",
+          "name",
+          "postal_code",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "address_line1": {
+            "type": "string"
+          },
+          "address_line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "postal_code": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "example": {
+          "address_line1": "959 Hougang Street 91 #04-288",
+          "address_line2": null,
+          "contact": "95556072",
+          "description": "Warehouse 2",
+          "id": 4,
+          "name": "Testing Dude",
+          "postal_code": "530959",
+          "user": {
+            "admin": false,
+            "email": "test@test.com",
+            "user_id": 1,
+            "username": "tester"
+          }
+        }
+      },
+      "NewAddress-Alreadyexist": {
+        "title": "NewAddress-Alreadyexist",
+        "required": [
+          "message",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "message": "Address already exist",
+          "success": false
+        }
+      },
+      "AddProductRequest": {
+        "title": "AddProductRequest",
+        "required": [
+          "retail_price",
+          "name",
+          "description",
+          "pic_filename",
+          "stock"
+        ],
+        "type": "object",
+        "properties": {
+          "retail_price": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "pic_filename": {
+            "type": "string"
+          },
+          "stock": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "retail_price": 135.0,
+          "name": "Blackpods Pro2",
+          "description": "This is a scam",
+          "pic_filename": "scampods_3529963a5-a2fa-458c-8b71-b4f8acdc1e12.jpg",
+          "stock": 30
+        }
+      },
+      "EditProductDetailsRequest": {
+        "title": "EditProductDetailsRequest",
+        "required": [
+          "retail_price",
+          "description",
+          "pic_filename",
+          "stock"
+        ],
+        "type": "object",
+        "properties": {
+          "retail_price": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "pic_filename": {
+            "type": "string"
+          },
+          "stock": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "retail_price": 215.0,
+          "description": "This is a new scam",
+          "pic_filename": "scampods_3529963a5-a2fa-458c-8b71-b4f8acdc1e12.jpg",
+          "stock": 100
+        }
+      },
+      "AddtoCartRequest": {
+        "title": "AddtoCartRequest",
+        "required": [
+          "product_id",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "product_id": 3,
+          "quantity": 3
+        }
+      },
+      "EditReviewRequest": {
+        "title": "EditReviewRequest",
+        "required": [
+          "comments"
+        ],
+        "type": "object",
+        "properties": {
+          "comments": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "comments": "Hello"
+        }
+      },
+      "DeleteReviewRequest": {
+        "title": "DeleteReviewRequest",
+        "required": [
+          "comments"
+        ],
+        "type": "object",
+        "properties": {
+          "comments": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "comments": "Hello"
+        }
+      },
+      "AddReviewRequest": {
+        "title": "AddReviewRequest",
+        "required": [
+          "rating",
+          "comments",
+          "user_id"
+        ],
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comments": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "rating": 5,
+          "comments": "Very Good",
+          "user_id": 1
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Customer"
+    },
+    {
+      "name": "Staff"
+    },
+    {
+      "name": "Auth",
+      "description": "Login and Register"
+    },
+    {
+      "name": "Admin"
+    },
+    {
+      "name": "Products"
+    }
+  ]
+}
